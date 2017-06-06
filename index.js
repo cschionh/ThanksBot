@@ -95,7 +95,8 @@ app.post('/webhook', function(request, response) {
 						// 	type: 'LOVE'
 						// }																		
 					}, function(error,res,body) {
-						console.log('Like', mention_id + ' ' + url, body);
+						console.log('Like', mention_id, body);
+						console.log('Like', url, body);
 					});
 					// Get mention text from Graph API
 					graphapi({
