@@ -36,19 +36,19 @@ app.set('view engine', 'ejs');
 
 
 // create a new table if it is not there in the database
-app.get('/', function (request, response) {
-	pg.connect(DATABASE_URL, function(err, client, done) {
-		client.query('create table thanks (create_date date, permalink_url text, recipient text, recipient_manager text, sender text, message text);', function(err, result) {
-			done();
-			if (err) { 
-				console.error(err); response.send('Error ' + err);
-			} else {
-				//response.render('pages/thanks', {results: result.rows} ); 
-				console.log("table created successfully")
-			}
-		});
-	});
-});
+// app.get('/', function (request, response) {
+// 	pg.connect(DATABASE_URL, function(err, client, done) {
+// 		client.query('create table thanks (create_date date, permalink_url text, recipient text, recipient_manager text, sender text, message text);', function(err, result) {
+// 			done();
+// 			if (err) { 
+// 				console.error(err); response.send('Error ' + err);
+// 			} else {
+// 				//response.render('pages/thanks', {results: result.rows} ); 
+// 				console.log("table created successfully")
+// 			}
+// 		});
+// 	});
+// });
 
 
 // List out all the thanks recorded in the database
