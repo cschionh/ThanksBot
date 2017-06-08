@@ -93,7 +93,7 @@ app.post('/webhook', function(request, response) {
 						//method: 'POST',
 						//qs: {							
 						//	type: 'LOVE'
-						}																		
+						//}																		
 					}, function(error,res,body) {
 						console.log('Like', mention_id, body);
 					});
