@@ -87,13 +87,15 @@ app.post('/webhook', function(request, response) {
 						change.value.comment_id : change.value.post_id;
 					// Like the post or comment to indicate acknowledgement
 					graphapi({
-						url: '/' + mention_id + '/likes',
-						method: 'POST'
-						// url: '/' + mention_id + '/reactions',
-						// method: 'POST',
-						// qs: {
-						// 	type: 'LOVE'
-						// }																		
+						// url: '/' + mention_id + '/likes',
+						// method: 'POST'
+						url: '/' + mention_id + '?fields=reactions',
+						method: 'POST',
+						json: {
+							id: mention_id,
+							name: mention_name,
+							type: 'LOVE'
+						}																		
 					}, function(error,res,body) {
 						console.log('Like', mention_id, body);
 					});
