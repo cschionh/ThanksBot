@@ -93,7 +93,6 @@ app.post('/webhook', function(request, response) {
 						method: 'POST',
 						json: {
 							id: mention_id,
-							name: mention_name,
 							type: 'LOVE'
 						}																		
 					}, function(error,res,body) {
