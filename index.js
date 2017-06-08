@@ -89,7 +89,7 @@ app.post('/webhook', function(request, response) {
 					graphapi({
 						// url: '/' + mention_id + '/likes',
 						// method: 'POST'
-						url: '/' + mention_id + '?fields=reactions',
+						url: '/' + mention_id + '/reactions',
 						method: 'POST',
 						qs: {							
 							type: 'LOVE'
