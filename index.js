@@ -91,7 +91,7 @@ app.post('/webhook', function(request, response) {
 						// method: 'POST'
 						url: '/' + mention_id + '?fields=reactions',
 						method: 'POST',
-						json: {							
+						qs: {							
 							type: 'LOVE'
 						}																		
 					}, function(error,res,body) {
