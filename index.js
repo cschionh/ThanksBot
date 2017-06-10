@@ -150,7 +150,7 @@ app.post('/webhook', function(request, response) {
 										if (err) { 
 											console.error(err); 
 										} else if (result) {
-											var summary = '\U+1F44F Thanks received!\n';
+											var summary = '✌ Received!\n';
 											// iterate through result rows, count number of thanks sent
 											var sender_thanks_sent = 0;
 											result.rows.forEach(function(row){
@@ -164,11 +164,24 @@ app.post('/webhook', function(request, response) {
 												result.rows.forEach(function(row){
 													if(row.recipient == recipient) recipient_thanks_received++;
 												});
-												if(managers[recipient]) {
-													summary += `@[${recipient}] has received \"${recipient_thanks_received}\" thanks in the last ${interval}. Heads up to @[${managers[recipient]}].\n`;
+												// to display the right grammar for thanks based on no. of thanks received
+												let singular_tx = "";
+												if(recipient_thanks_received == 1) {
+													singular_tx = "thank"
 												} else {
-													summary += `@[${recipient}] has received \"${recipient_thanks_received}\" thanks in the last ${interval}. I don't know their manager.\n`;
+													singular_tx = "thanks"
 												}
+												// if(managers[recipient]) {
+												// 	summary += `@[${recipient}] has received \"${recipient_thanks_received}\" thanks in the last ${interval}. Heads up to @[${managers[recipient]}].\n`;
+												// } else {
+												// 	summary += `@[${recipient}] has received \"${recipient_thanks_received}\" thanks in the last ${interval}. I don't know their manager.\n`;
+												// }
+												if(managers[recipient]) {
+													summary += `@[${recipient}] has received \"${recipient_thanks_received}\" ${singular_tx} in the last ${interval}. Heads up to @[${managers[recipient]}].\n`;
+												} else {
+													summary += `@[${recipient}] has received \"${recipient_thanks_received}\" ${singular_tx} in the last ${interval}. I don't know their manager.\n`;
+												}
+
 											});
 											// Comment reply with thanks stat summary
 											graphapi({
