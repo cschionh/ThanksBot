@@ -164,13 +164,16 @@ app.post('/webhook', function(request, response) {
 												result.rows.forEach(function(row){
 													if(row.recipient == recipient) recipient_thanks_received++;
 												});
-												// to display the right grammar for thanks based on no. of thanks received
+												// to display the right grammar for thanks based on no. of thanks received												
 												let singular_tx = "";
-												if(recipient_thanks_received == 1) {
-													singular_tx = "thank"
-												} else {
-													singular_tx = "thanks"
-												}
+												singular_tx = checkThanksGrammar(recipient_thanks_received); //use a function to determine which word to use
+												
+												// if(recipient_thanks_received == 1) {
+												// 	singular_tx = "thank"
+												// } else {
+												// 	singular_tx = "thanks"
+												// }
+												
 												// if(managers[recipient]) {
 												// 	summary += `@[${recipient}] has received \"${recipient_thanks_received}\" thanks in the last ${interval}. Heads up to @[${managers[recipient]}].\n`;
 												// } else {
@@ -236,4 +239,14 @@ function verifyRequestSignature(req, res, buf) {
 			throw new Error("Couldn't validate the request signature.");
 		}
 	}
+}
+
+function checkThanksGrammar(thanksCnt) {
+	var thanks_txt = "";
+	if(thanksCnt == 1) {
+		thanks_txt = "thank";
+	} else {
+		thanks_txt = "thanks";
+	}	
+	return singular_tx;
 }
