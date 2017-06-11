@@ -248,5 +248,5 @@ function checkThanksGrammar(thanksCnt) {
 	} else {
 		thanks_txt = "thanks";
 	}	
-	return singular_tx;
+	return thanks_txt;
 }
