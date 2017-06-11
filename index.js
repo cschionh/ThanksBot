@@ -156,6 +156,10 @@ app.post('/webhook', function(request, response) {
 											result.rows.forEach(function(row){
 												if(row.sender == sender) sender_thanks_sent++;
 											});
+											// to display the right grammar for thanks based on no. of thanks received												
+											let singular_tx = "";
+											singular_tx = checkThanksGrammar(sender_thanks_sent); //use a function to determine which word to use
+											
 											summary += `@[${sender}] has sent \"${sender_thanks_sent}\" thanks in the last ${interval}.\n`;
 
 											// Iterate through recipients, count number of thanks received
@@ -165,7 +169,7 @@ app.post('/webhook', function(request, response) {
 													if(row.recipient == recipient) recipient_thanks_received++;
 												});
 												// to display the right grammar for thanks based on no. of thanks received												
-												let singular_tx = "";
+												singular_tx = "";
 												singular_tx = checkThanksGrammar(recipient_thanks_received); //use a function to determine which word to use
 												
 												// if(recipient_thanks_received == 1) {
